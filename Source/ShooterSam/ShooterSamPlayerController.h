@@ -41,4 +41,10 @@ protected:
 	/** Input mapping context setup */
 	virtual void SetupInputComponent() override;
 
+protected:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="UI")
+	TSubclassOf<UUserWidget> CrosshairWidgetClass;
+	
+	TObjectPtr<UUserWidget> CrosshairWidget;
+
 };

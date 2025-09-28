@@ -31,6 +31,20 @@ void AShooterSamPlayerController::BeginPlay()
 		}
 
 	}
+
+	// Create and add the crosshair widget to the viewport
+	if (CrosshairWidget == nullptr && IsLocalPlayerController())
+	{
+		CrosshairWidget = CreateWidget<UUserWidget>(this, CrosshairWidgetClass);
+		if (CrosshairWidget)
+		{
+			CrosshairWidget->AddToPlayerScreen(0);
+		}
+		else
+		{
+			UE_LOG(LogShooterSam, Error, TEXT("Could not spawn crosshair widget."));
+		}
+	}
 }
 
 void AShooterSamPlayerController::SetupInputComponent()
