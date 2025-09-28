@@ -49,6 +49,10 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* MouseLookAction;
 
+	/** Shoot Input Action */
+	UPROPERTY(EditAnywhere, Category="Input")
+	UInputAction* ShootAction;
+
 public:
 
 	/** Constructor */
@@ -66,6 +70,9 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
+
+	/** Called for shoot input */
+	void Shoot(const FInputActionValue& Value);
 
 public:
 
