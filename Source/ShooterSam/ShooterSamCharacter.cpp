@@ -55,12 +55,15 @@ void AShooterSamCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// hide the original weapon
+	GetMesh()->HideBoneByName(TEXT("weapon_r"), EPhysBodyOp::PBO_None);
 	// spawn gun actor
 	if (GunClass)
 	{
 		GunPtr = GetWorld()->SpawnActor<AGun>(GunClass);
 		check(GunPtr);
 		GunPtr->SetOwner(this);
+		GunPtr->AttachToComponent(GetMesh(), FAttachmentTransformRules::KeepRelativeTransform, TEXT("WeaponSocket"));
 	}
 }
 
