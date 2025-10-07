@@ -33,5 +33,12 @@ void AGun::Tick(float DeltaTime)
 void AGun::PullTriger()
 {
 	UE_LOG(LogTemp, Log, TEXT("Bang!") );
+	if (AController* playerController = GetOwner()->GetInstigatorController())
+	{
+		FVector ViewPointLocation;
+		FRotator ViewPointRotation;
+		playerController->GetPlayerViewPoint(ViewPointLocation, ViewPointRotation);
+		DrawDebugCamera(GetWorld(), ViewPointLocation, ViewPointRotation, 90.0f, 2.0f, FColor::Red, false, 2.0f);
+	}
 }
 
