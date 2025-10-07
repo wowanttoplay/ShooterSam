@@ -25,6 +25,8 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Components")
 	TObjectPtr<USkeletalMeshComponent> SkeletalMeshComponent;
 
+	UPROPERTY(EditAnywhere, Category="Shoot")
+	float MaxRange = 10000.0f;
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

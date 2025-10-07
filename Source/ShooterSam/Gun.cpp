@@ -38,7 +38,17 @@ void AGun::PullTriger()
 		FVector ViewPointLocation;
 		FRotator ViewPointRotation;
 		playerController->GetPlayerViewPoint(ViewPointLocation, ViewPointRotation);
-		DrawDebugCamera(GetWorld(), ViewPointLocation, ViewPointRotation, 90.0f, 2.0f, FColor::Red, false, 2.0f);
+
+		FHitResult HitResult;
+		FCollisionQueryParams Params;
+		Params.AddIgnoredActor(this);
+		Params.AddIgnoredActor(GetOwner());
+		FVector End = ViewPointLocation + (ViewPointRotation.Vector() * MaxRange);
+		GetWorld()->LineTraceSingleByChannel(HitResult, ViewPointLocation, End, ECC_GameTraceChannel2, Params, FCollisionResponseParams::DefaultResponseParam);
+		if (HitResult.bBlockingHit)
+		{
+			DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 20.0f, 12, FColor::Red, false, 2.0f);
+		}
 	}
 }
 
