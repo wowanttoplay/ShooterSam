@@ -7,6 +7,7 @@
 #include "Logging/LogMacros.h"
 #include "ShooterSamCharacter.generated.h"
 
+class AGun;
 class USpringArmComponent;
 class UCameraComponent;
 class UInputAction;
@@ -53,10 +54,19 @@ protected:
 	UPROPERTY(EditAnywhere, Category="Input")
 	UInputAction* ShootAction;
 
+protected:
+	UPROPERTY(EditAnywhere, Category="Weapon")
+	TSubclassOf<AGun> GunClass;
+
+	UPROPERTY()
+	TObjectPtr<AGun> GunPtr = nullptr;
+
 public:
 
 	/** Constructor */
-	AShooterSamCharacter();	
+	AShooterSamCharacter();
+
+	virtual void BeginPlay() override;
 
 protected:
 

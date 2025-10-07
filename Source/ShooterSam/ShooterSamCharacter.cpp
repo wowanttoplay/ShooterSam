@@ -9,6 +9,7 @@
 #include "GameFramework/Controller.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Gun.h"
 #include "InputActionValue.h"
 #include "ShooterSam.h"
 
@@ -48,6 +49,19 @@ AShooterSamCharacter::AShooterSamCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+}
+
+void AShooterSamCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// spawn gun actor
+	if (GunClass)
+	{
+		GunPtr = GetWorld()->SpawnActor<AGun>(GunClass);
+		check(GunPtr);
+		GunPtr->SetOwner(this);
+	}
 }
 
 void AShooterSamCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -96,7 +110,7 @@ void AShooterSamCharacter::Look(const FInputActionValue& Value)
 
 void AShooterSamCharacter::Shoot(const FInputActionValue& Value)
 {
-	UE_LOG(LogTemp, Log, TEXT("Shoot action triggered"));
+	if (GunPtr) GunPtr->PullTriger();
 }
 
 void AShooterSamCharacter::DoMove(float Right, float Forward)
