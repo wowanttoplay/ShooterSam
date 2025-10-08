@@ -6,6 +6,7 @@ public class ShooterSam : ModuleRules
 {
 	public ShooterSam(ReadOnlyTargetRules Target) : base(Target)
 	{
+		PrivateDependencyModuleNames.AddRange(new string[] { "Niagara" });
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicDependencyModuleNames.AddRange(new string[] {
@@ -20,8 +21,7 @@ public class ShooterSam : ModuleRules
 			"UMG",
 			"Slate"
 		});
-
-		PrivateDependencyModuleNames.AddRange(new string[] { });
+		
 
 		PublicIncludePaths.AddRange(new string[] {
 			"ShooterSam",

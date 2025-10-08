@@ -113,7 +113,7 @@ void AShooterSamCharacter::Look(const FInputActionValue& Value)
 
 void AShooterSamCharacter::Shoot(const FInputActionValue& Value)
 {
-	if (GunPtr) GunPtr->PullTriger();
+	if (GunPtr) GunPtr->PullTrigger();
 }
 
 void AShooterSamCharacter::DoMove(float Right, float Forward)

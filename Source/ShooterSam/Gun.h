@@ -4,7 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "NiagaraComponent.h"
 #include "Gun.generated.h"
+
+
 
 UCLASS()
 class SHOOTERSAM_API AGun : public AActor
@@ -27,10 +30,16 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category="Shoot")
 	float MaxRange = 10000.0f;
+
+	UPROPERTY(visibleAnywhere, Category="Shoot")
+	TObjectPtr<UNiagaraComponent> MuzzleFlash;
+
+	UPROPERTY(EditAnywhere, Category="Shoot")
+	TObjectPtr<UNiagaraSystem> ImpactEffect;
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable, Category="Shoot")
-	void PullTriger();
+	void PullTrigger();
 };
